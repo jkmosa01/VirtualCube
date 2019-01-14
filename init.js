@@ -17,24 +17,31 @@ document.body.appendChild( renderer.domElement );
         for(var j=0; j<3; j++){
             for (var k=0; k<3; k++){
                 var material = new THREE.MeshBasicMaterial({
-                    color: 0xffff00,
                     vertexColors: THREE.FaceColors
                 });
                 var geometry = new THREE.BoxGeometry(1, 1, 1);
-                var red = new THREE.Color(0xFF0000);
-                var green = new THREE.Color(0x00FF00);
-                var blue = new THREE.Color(0xFFFF00);
-                var colors = [red, green, blue];
-                for (var l = 0; l < 3; l++) {
-                    geometry.faces[4 * l].color = colors[l];
-                    geometry.faces[4 * l + 1].color = colors[l];
-                    geometry.faces[4 * l + 2].color = colors[l];
-                    geometry.faces[4 * l + 3].color = colors[l];
-                }
+                // var red = new THREE.Color(0xFF0000);
+                // var green = new THREE.Color(0x00FF00);
+                // var blue = new THREE.Color(0xFFFF00);
+                // var colors = [red, green, blue];
+                geometry.faces[0].color = new THREE.Color(0xFF0000);
+                geometry.faces[1].color = new THREE.Color(0xFF0000);
+                geometry.faces[2].color = new THREE.Color(0xFF8000);
+                geometry.faces[3].color = new THREE.Color(0xFF8000);
+                geometry.faces[4].color = new THREE.Color(0xFFFFFF);
+                geometry.faces[5].color = new THREE.Color(0xFFFFFF);
+                console.log(geometry.faces);
+                geometry.faces[6].color = new THREE.Color(0xFFFF00);
+                geometry.faces[7].color = new THREE.Color(0xFFFF00);
+                geometry.faces[8].color = new THREE.Color(0x00FF00);
+                geometry.faces[9].color = new THREE.Color(0x00FF00);
+                geometry.faces[10].color = new THREE.Color(0x0000FF);
+                geometry.faces[11].color = new THREE.Color(0x0000FF);
+
                 var cube = new THREE.Mesh(geometry, material);
-                cube.position.x = i*1.5-1.5;
-                cube.position.y = j*1.5-1.5;
-                cube.position.z = k*1.5-1.5;
+                cube.position.x = i*1.1-1.1;
+                cube.position.y = j*1.1-1.1;
+                cube.position.z = k*1.1-1.1;
                 cubies.push(cube);
                 scene.add(cubies[cubies.length-1]);
             }
