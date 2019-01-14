@@ -1,12 +1,13 @@
 // import * as THREE from "./three.min";
 var scene,camera,renderer;
 var cubies = [];
+var borders = [];
 window.onload = function(){
 scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 renderer = new THREE.WebGLRenderer();
-scene.background = new THREE.Color( 0xFF00FF );
+scene.background = new THREE.Color( 0xFFFFFF );
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
@@ -37,19 +38,26 @@ document.body.appendChild( renderer.domElement );
                 geometry.faces[9].color = new THREE.Color(0x00FF00);
                 geometry.faces[10].color = new THREE.Color(0x0000FF);
                 geometry.faces[11].color = new THREE.Color(0x0000FF);
-
                 var cube = new THREE.Mesh(geometry, material);
                 cube.position.x = i*1.1-1.1;
                 cube.position.y = j*1.1-1.1;
                 cube.position.z = k*1.1-1.1;
                 cubies.push(cube);
+                var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+                var edges = new THREE.EdgesGeometry( geometry );
+                var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000} ) );
+                borderToAdd.position.x = i*1.1-1.1;
+                borderToAdd.position.y = j*1.1-1.1;
+                borderToAdd.position.z = k*1.1-1.1;
+                borders.push(borderToAdd);
+                scene.add( borderToAdd );
                 scene.add(cubies[cubies.length-1]);
             }
         }
     }
-camera.position.z = 10;
-camera.position.x = 10;
-camera.position.y = 10;
+camera.position.z = 5;
+camera.position.x = 5;
+camera.position.y = 5;
 camera.lookAt(0,0,0)
 
 animate();
